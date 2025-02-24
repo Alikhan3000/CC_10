@@ -86,9 +86,19 @@ class Inventory {                                           //created a class th
     listOrders () {
        for (let i = 0; i < this.orders.length; i++) {       //I used for loop for this method log all placed orders 
         console.log(this.orders[i].getOrderDetails());
-    }
+    }}
 
-}}
+    //Task 5: Implementing Product Restocking
+    restockProduct (productId, quantity) {                   //added a method in the Inventory class with 2 variables
+        for (let i = 0; i < this.products.length; i++) {
+            if (this.products[i].id === productId) {        //if ID is matched the quantity of stock is increased by the quantity
+                this.products[i].stock += quantity;
+                return;                                     //returned the output of the method 
+            
+    }
+        }
+    }}
+
 
 //Test Cases:
 
@@ -108,3 +118,10 @@ inventory.listOrders();
 // Expected output: "Order ID: 601, Product: Laptop, Quantity: 2, Total Price: $2400"
 console.log(prod1.getDetails());
 // Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 3"
+
+
+//Task 5: Implementing Product Restocking
+
+inventory.restockProduct(101, 5); //stock is increased by 5
+console.log(prod1.getDetails());  //logged the updated product details 
+// Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 8"
