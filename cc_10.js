@@ -21,6 +21,7 @@ updateStock(quantity){                          //this method decreases stock wh
 } 
 //test cases:
 const prod1 = new Product("Laptop", 101, 1200, 10);
+
 console.log(prod1.getDetails()); 
 // Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 10"
 
@@ -54,3 +55,30 @@ console.log(order1.getOrderDetails());          //logged purchase details using 
 
 console.log(prod1.getDetails());                //logged product information with the updated stock
 // Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 5" (Stock reduced)
+
+//Task 3: Creating an Inventory Class
+
+class Inventory {                                           //created a class that includes an array as a property
+    constructor() {
+        this.products = [];
+    }
+
+    addProduct(product){                                   //added a method that adds a product into the array using .push
+        this.products.push(product)
+    }
+
+    listProducts(){                                        //this method logs all products' details of the products in the array using a loop and a function from Product class
+        for (let i = 0; i < this.products.length; i++) {
+            console.log(this.products[i].getDetails());
+        }
+    }            
+    
+
+}
+
+//Test Cases:
+
+const inventory = new Inventory();
+inventory.addProduct(prod1);            //added a product into the array 
+inventory.listProducts();               
+// Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 5"
