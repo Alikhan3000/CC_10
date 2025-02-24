@@ -61,6 +61,7 @@ console.log(prod1.getDetails());                //logged product information wit
 class Inventory {                                           //created a class that includes an array as a property
     constructor() {
         this.products = [];
+        this.orders = [];                               //added a new array in the Inventory class
     }
 
     addProduct(product){                                   //added a method that adds a product into the array using .push
@@ -73,8 +74,21 @@ class Inventory {                                           //created a class th
         }
     }            
     
+    //Task 4: Implementing Order Management
+    placeOrder(orderId, product, quantity){                //created a method with 3 variables
+        if (product.stock >= quantity) {                            //creates a new order and adds it to orders if stock is available
+            let purchase = new Order(orderId, product, quantity);
+            this.orders.push(purchase)                              //used .push, which adds a new product to the end of the array
+            
+        }
+    }
 
-}
+    listOrders () {
+       for (let i = 0; i < this.orders.length; i++) {       //I used for loop for this method log all placed orders 
+        console.log(this.orders[i].getOrderDetails());
+    }
+
+}}
 
 //Test Cases:
 
@@ -82,3 +96,15 @@ const inventory = new Inventory();
 inventory.addProduct(prod1);            //added a product into the array 
 inventory.listProducts();               
 // Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 5"
+
+
+//Task 4: Implementing Order Management
+
+
+//test data: 
+
+inventory.placeOrder(601, prod1, 2);    //a new product added to orders array
+inventory.listOrders();
+// Expected output: "Order ID: 601, Product: Laptop, Quantity: 2, Total Price: $2400"
+console.log(prod1.getDetails());
+// Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 3"
